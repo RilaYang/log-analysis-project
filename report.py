@@ -34,11 +34,13 @@ query_error = (
     "where percentage >= 1"
 )
 
+
 def connect_db():
     try:
         db = psycopg2.connect(database=DBNAME)
     except:
         print "something wrong to connect the datebase"
+
 
 def query_pop_title():
     c = db.cursor()
