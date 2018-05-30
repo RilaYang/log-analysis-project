@@ -12,5 +12,7 @@ load the [data](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f74
 
 ## start the project
 download and unzip the date.
+
 use the command 'psql -d news -f newsdata.sql' to connect database.
+
 run 'python newsdata.py' in command line
