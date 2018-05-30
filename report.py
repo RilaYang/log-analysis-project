@@ -35,14 +35,15 @@ query_error = (
 )
 
 
-def connect_db():
-    try:
-        db = psycopg2.connect(database=DBNAME)
-    except:
-        print "something wrong to connect the database"
+# def connect_db():
+#     try:
+#         db = psycopg2.connect(database=DBNAME)
+#         print "connect the database"
+#     except:
+#         print "something wrong to connect the database"
 
 
-def query_pop_title():
+def pop_title():
     c = db.cursor()
     try:
         c.execute(query_pop_title)
@@ -69,8 +70,8 @@ def query_pop_title():
         print "   ", p[0], " -- ", p[1], " (views)"
     return
 
-
-def query_pop_author():
+ 
+def pop_author():
     c = db.cursor()
     try:
         c.execute(query_pop_author)
@@ -98,7 +99,7 @@ def query_pop_author():
     return
 
 
-def query_error():
+def error():
     c = db.cursor()
     try:
         c.execute(query_error)
@@ -130,8 +131,13 @@ def query_error():
     return
 
 
-connect_db()
-query_pop_title()
-query_pop_author()
-query_error()
+# connect_db()
+try:
+    db = psycopg2.connect(database=DBNAME)
+    print "connect the database"
+except:
+    print "something wrong to connect the database"
+pop_title()
+pop_author()
+error()
 db.close()
