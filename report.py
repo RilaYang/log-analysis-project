@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import psycopg2
 
 DBNAME = "news"
@@ -47,7 +49,7 @@ def pop_title():
     c = db.cursor()
     try:
         c.execute(query_pop_title)
-    except:
+    except RuntimeError:
         print "something wrong with qurying the articles"
     row = c.fetchall()
     print '''
@@ -70,12 +72,12 @@ def pop_title():
         print "   ", p[0], " -- ", p[1], " (views)"
     return
 
- 
+
 def pop_author():
     c = db.cursor()
     try:
         c.execute(query_pop_author)
-    except:
+    except RuntimeError:
         print "something wrong with qurying the authors"
     row = c.fetchall()
     print '''
@@ -103,11 +105,11 @@ def error():
     c = db.cursor()
     try:
         c.execute(query_error)
-    except:
+    except RuntimeError:
         print "something wrong with qurying the server error"
     row = c.fetchall()
     print '''
-    \n 
+    \n
     +-----------------------------------+
     |                                   |
     | The Day Server Error More Than 1% |
@@ -135,7 +137,7 @@ def error():
 try:
     db = psycopg2.connect(database=DBNAME)
     print "connect the database"
-except:
+except RuntimeError:
     print "something wrong to connect the database"
 pop_title()
 pop_author()
